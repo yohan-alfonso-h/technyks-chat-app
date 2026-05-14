@@ -1,14 +1,14 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { APP_RUNTIME_CONFIG } from '../app-runtime-config';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = environment.apiUrl;
+  private readonly apiUrl = inject(APP_RUNTIME_CONFIG).apiUrl;
 
   async sendMessageToLLM(message: string): Promise<string> {
     try {
